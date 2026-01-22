@@ -1,0 +1,63 @@
+kind: workload
+description: hello-world
+tags: {}
+apiVersion: cpln.io/v1
+gvc: {{ .Values.gvc }}
+metadata:
+  name: hello-world
+  annotations: {}
+  namespace: default
+  resourceVersion: "3"
+org: {{ .Values.org }}
+spec:
+  type: standard
+  containers:
+    - name: hello-world
+      cpu: 50m
+      env: []
+      image: //image/hello-world:v1
+      inheritEnv: false
+      memory: 128Mi
+      ports:
+        - number: 3000
+          protocol: http
+      volumes: []
+  defaultOptions:
+    autoscaling:
+      maxConcurrency: 0
+      maxScale: 1
+      metric: disabled
+      minScale: 1
+      scaleToZeroDelay: 300
+      target: 95
+    capacityAI: true
+    debug: false
+    multiZone:
+      enabled: false
+    suspend: true
+    timeoutSeconds: 5
+  firewallConfig:
+    external:
+      inboundAllowCIDR:
+        - 0.0.0.0/0
+      inboundBlockedCIDR: []
+      outboundAllowCIDR: []
+      outboundAllowHostname: []
+      outboundAllowPort: []
+      outboundBlockedCIDR: []
+    internal:
+      inboundAllowType: none
+      inboundAllowWorkload: []
+  loadBalancer:
+    replicaDirect: false
+  localOptions: []
+  requestRetryPolicy:
+    attempts: 2
+    retryOn:
+      - connect-failure
+      - refused-stream
+      - unavailable
+      - cancelled
+      - resource-exhausted
+      - retriable-status-codes
+  supportDynamicTags: false
