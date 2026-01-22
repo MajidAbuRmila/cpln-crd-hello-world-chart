@@ -1,0 +1,14 @@
+kind: gvc
+description: {{ .Values.gvc }}
+tags: {}
+apiVersion: cpln.io/v1
+metadata:
+  name: {{ .Values.gvc }}
+  annotations: {}
+  namespace: default
+  resourceVersion: '18'
+org: {{ .Values.org }}
+spec:
+  staticPlacement:
+    locationLinks:
+      - //location/aws-eu-central-1
