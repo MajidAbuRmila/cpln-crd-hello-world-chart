@@ -1,13 +1,11 @@
-kind: gvc
-description: {{ .Values.gvc }}
-tags: {}
 apiVersion: cpln.io/v1
+kind: gvc
 metadata:
   name: {{ .Values.gvc }}
-  annotations: {}
-  namespace: default
-  resourceVersion: '18'
+  namespace: {{ .Release.Namespace }}
 org: {{ .Values.org }}
+description: {{ .Values.gvc }}
+tags: {}
 spec:
   staticPlacement:
     locationLinks:

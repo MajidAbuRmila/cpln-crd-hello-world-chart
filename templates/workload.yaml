@@ -1,14 +1,12 @@
-kind: workload
-description: hello-world
-tags: {}
 apiVersion: cpln.io/v1
-gvc: {{ .Values.gvc }}
+kind: workload
 metadata:
   name: hello-world
-  annotations: {}
-  namespace: default
-  resourceVersion: "3"
+  namespace: {{ .Release.Namespace }}
 org: {{ .Values.org }}
+gvc: {{ .Values.gvc }}
+description: hello-world
+tags: {}
 spec:
   type: standard
   containers:
@@ -32,8 +30,6 @@ spec:
       target: 95
     capacityAI: true
     debug: false
-    multiZone:
-      enabled: false
     suspend: true
     timeoutSeconds: 5
   firewallConfig:
@@ -51,13 +47,4 @@ spec:
   loadBalancer:
     replicaDirect: false
   localOptions: []
-  requestRetryPolicy:
-    attempts: 2
-    retryOn:
-      - connect-failure
-      - refused-stream
-      - unavailable
-      - cancelled
-      - resource-exhausted
-      - retriable-status-codes
   supportDynamicTags: false
