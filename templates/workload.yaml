@@ -30,7 +30,7 @@ spec:
       target: 95
     capacityAI: true
     debug: false
-    suspend: true
+    suspend: false
     timeoutSeconds: 5
   firewallConfig:
     external:
