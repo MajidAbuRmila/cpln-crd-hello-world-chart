@@ -33,9 +33,9 @@ spec:
     server: https://kubernetes.default.svc
     namespace: hello-world
   source:
-    repoURL: https://majidaburmila.github.io/hello-world-cpln-crd-chart/
-    chart: hello-world
-    targetRevision: 0.1.0
+    repoURL: https://github.com/MajidAbuRmila/cpln-crd-hello-world-chart.git
+    path: .  # Path to the chart in the repo
+    targetRevision: main  # Branch, tag, or commit
     helm:
       values: |
         org: your-org-name
